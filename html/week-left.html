@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <style>.body {
+  display: inline-block;
+  width: 1860;
+  margin: 0;
+}
+.topContainer {
+  /** portrait, 1860 x 2480, -2x margin per side **/
+  height: 2400;
+  width: 1780;
+  margin: 40;
+}
+
+.cell {
+  margin: 5px;
+  padding: 20;
+  font-size: 3rem;
+  width: 400px;
+  border-width: 4px;
+  border-color: black;
+  border-style: solid;
+}
+
+.date {
+  height: 120px;
+}
+
+.focus {
+  height: 400px;
+}
+
+.happened {
+  height: 1200px;
+}
+
+.main-section {
+  height: 80%;
+}
+
+.left-column {
+  width: 200px;
+}
+
+.focusHeader {
+  /** 2x cell padding **/
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-top: -20px;
+  background-color: black;
+  color: beige;
+}
+
+.container {
+  background-color: lavender;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: column;
+}
+
+.goofy {
+  background-color: lightsalmon;
+}
+
+</style>
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+      </script>
+  </head>
+  <body class="body">
+    <div class="container topContainer">
+      <div class="main-section">
+        <div class="left-column">
+          <div class="cell date goofy">
+            Week 26<br>
+            Jun 26 - Jul 2
+          </div>
+          <div class="cell focus goofy">
+            <div class="focusHeader">
+              This week's focus
+            </div>
+          </div>
+          <div class="cell happened goofy">
+            <div class="focusHeader">
+              Things that happened
+            </div>
+          </div>
+        </div>
+        <div class="main-column">
+          <div class="cell">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
