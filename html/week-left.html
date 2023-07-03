@@ -1,97 +1,768 @@
 <html>
   <head>
-    <style>.body {
-  display: inline-block;
+    <style>body {
   width: 1860;
+  height: 2480;
   margin: 0;
-}
-.topContainer {
-  /** portrait, 1860 x 2480, -2x margin per side **/
-  height: 2400;
-  width: 1780;
-  margin: 40;
+  font-size: 3rem;
 }
 
-.cell {
-  margin: 5px;
-  padding: 20;
-  font-size: 3rem;
-  width: 400px;
-  border-width: 4px;
-  border-color: black;
-  border-style: solid;
+.top-container {
+  /** portrait, 1860 x 2480, -2x margin per side **/
+  height: 2480;
 }
 
 .date {
-  height: 120px;
+  flex-grow: 1;
 }
 
 .focus {
-  height: 400px;
+  flex-grow: 30;
 }
 
 .happened {
-  height: 1200px;
+  flex-grow: 120;
 }
 
 .main-section {
-  height: 80%;
+  display: flex;
+  width: 100%;
 }
 
-.left-column {
-  width: 200px;
+.bottom-section {
+  display: flex;
+  flex-grow: 1;
 }
 
-.focusHeader {
-  /** 2x cell padding **/
-  width: calc(100% + 40px);
-  margin-left: -20px;
-  margin-top: -20px;
+.column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.day-of-week {
+  width: 60px;
+  background-color: white;
+}
+
+.day-times {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 18;
+  font-size: 35px;
+  height: 100%;
+}
+
+.time {
+  flex-grow: 1;
+  display: flex;
+}
+
+.time-cell {
+  width: 22%;
+  text-align: right;
+  padding-right: 12px;
+  padding-left: 2px;
+  background-color: lightgrey;
+  padding-top: 4px;
+  border-width: 4px;
+  border-color: black;
+  border-bottom-style: solid;
+}
+
+.time-row {
+  width: 78%;
+  border-width: 4px;
+  border-color: gray;
+  border-bottom-style: solid;
+}
+
+.day-focus {
+  display: flex;
+  align-items: center;
+}
+
+.day-focus-header {
+  text-align: center;
+  padding: 7px;
+  font-size: 1.6rem;
+  writing-mode: vertical-rl;
+  transform: scale(-1, -1);
+}
+
+.standard-margin {
+  margin: 5px;
+}
+
+.standard-padding {
+  padding: 20px;
+}
+
+.bordered {
+  margin: 5px;
+  border-width: 4px;
+  border-color: black;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+/* what is a cell?
+ * a cell has margin, padding, and a border */
+.cell {
+  margin: 5px;
+  padding: 20px;
+  font-size: 3rem;
+  border-width: 4px;
+  border-color: black;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.cell-with-header {
+  margin: 5px;
+  border-width: 4px;
+  border-color: black;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.cell-header {
+  display: flex;
+  justify-content: space-between;
   background-color: black;
   color: beige;
+  padding: 20px;
 }
 
 .container {
-  background-color: lavender;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .goofy {
   background-color: lightsalmon;
 }
 
+.to-do {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+.to-do-table {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.to-do-row {
+  border-width: 2px;
+  border-color: black;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  /* height: 100%; */
+  /* width: 100%; */
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.to-do-cell {
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  /* height: 100%; */
+  width: 40px;
+}
 </style>
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
       </script>
   </head>
-  <body class="body">
-    <div class="container topContainer">
+  <body class="container">
       <div class="main-section">
-        <div class="left-column">
+        <div class="column">
           <div class="cell date goofy">
-            Week 26<br>
-            Jun 26 - Jul 2
+            Week<br>
+            <div style="text-align: center;">—</div>
           </div>
-          <div class="cell focus goofy">
-            <div class="focusHeader">
+          <div class="cell-with-header focus goofy">
+            <div class="cell-header">
               This week's focus
             </div>
           </div>
-          <div class="cell happened goofy">
-            <div class="focusHeader">
+          <div class="cell-with-header happened goofy">
+            <div class="cell-header">
               Things that happened
             </div>
           </div>
         </div>
-        <div class="main-column">
-          <div class="cell">
+          <div class="column">
+            <div class="standard-margin" style="flex-grow: 1;">
+              <div class="cell-header">
+                Monday
+                <div class="day-of-week">
+                </div>
+              </div>
+            </div>
+            <div class="day-focus bordered" style="flex-grow: 2;">
+              <div class="day-focus-header">
+                Today's<br>focus
+              </div>
+            </div>
+            <div class="day-times standard-margin">
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="standard-margin" style="flex-grow: 1;">
+              <div class="cell-header">
+                Tuesday
+                <div class="day-of-week">
+                </div>
+              </div>
+            </div>
+            <div class="day-focus bordered" style="flex-grow: 2;">
+              <div class="day-focus-header">
+                Today's<br>focus
+              </div>
+            </div>
+            <div class="day-times standard-margin">
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="standard-margin" style="flex-grow: 1;">
+              <div class="cell-header">
+                Wednesday
+                <div class="day-of-week">
+                </div>
+              </div>
+            </div>
+            <div class="day-focus bordered" style="flex-grow: 2;">
+              <div class="day-focus-header">
+                Today's<br>focus
+              </div>
+            </div>
+            <div class="day-times standard-margin">
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">11:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">12:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">1:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">2:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">3:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">4:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">5:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">6:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">7:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">8:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">9:30</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:00</div>
+                  <div class="time-row"></div>
+                </div>
+                <div class="time">
+                  <div class="time-cell">10:30</div>
+                  <div class="time-row"></div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="bottom-section">
+        <div class="column">
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Personal to-do list</div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Work to-do list</div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
           </div>
         </div>
       </div>
-    </div>
   </body>
 </html>

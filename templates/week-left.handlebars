@@ -5,30 +5,104 @@
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
       </script>
   </head>
-  <body class="body">
-    <div class="container topContainer">
+  <body class="container">
       <div class="main-section">
-        <div class="left-column">
+        <div class="column">
           <div class="cell date goofy">
-            Week 26<br>
-            Jun 26 - Jul 2
+            Week<br>
+            <div style="text-align: center;">—</div>
           </div>
-          <div class="cell focus goofy">
-            <div class="focusHeader">
+          <div class="cell-with-header focus goofy">
+            <div class="cell-header">
               This week's focus
             </div>
           </div>
-          <div class="cell happened goofy">
-            <div class="focusHeader">
+          <div class="cell-with-header happened goofy">
+            <div class="cell-header">
               Things that happened
             </div>
           </div>
         </div>
-        <div class="main-column">
-          <div class="cell">
+        {{#each days}}
+          <div class="column">
+            <div class="standard-margin" style="flex-grow: 1;">
+              <div class="cell-header">
+                {{this}}
+                <div class="day-of-week">
+                </div>
+              </div>
+            </div>
+            <div class="day-focus bordered" style="flex-grow: 2;">
+              <div class="day-focus-header">
+                Today's<br>focus
+              </div>
+            </div>
+            <div class="day-times standard-margin">
+              {{#each @root.times}}
+                <div class="time">
+                  <div class="time-cell">{{this}}</div>
+                  <div class="time-row"></div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="bottom-section">
+        <div class="column">
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Personal to-do list</div>
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
+          </div>
+          <div class="cell-with-header to-do-table">
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
+          </div>
+          <div class="cell-with-header to-do-table">
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
+          </div>
+        </div>
+        <div class="column">
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Work to-do list</div>
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
+          </div>
+          <div class="cell-with-header to-do-table">
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
+          </div>
+          <div class="cell-with-header to-do-table">
+            {{#repeat 4}}
+              <div class="to-do">
+                <div class="to-do-cell"></div>
+                <div class="to-do-row"></div>
+              </div>
+            {{/repeat}}
           </div>
         </div>
       </div>
-    </div>
   </body>
 </html>
