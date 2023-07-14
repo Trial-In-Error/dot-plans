@@ -3,6 +3,7 @@ import * as path from 'node:path'
 import Handlebars from 'handlebars'
 import livereload from 'livereload'
 import handlebarsHelperRepeat from 'handlebars-helper-repeat'
+import { spawn } from 'child_process'
 
 const server = livereload.createServer()
 const lastTemplateValues = {}
@@ -30,6 +31,7 @@ function buildCSSPath(templatePath) {
 
 function startHotReload() {
   server.watch(paths)
+  spawn('node', ['./node_modules/http-server/bin/http-server'])
 }
 
 function compileTemplate(eventType, templatePath) {
