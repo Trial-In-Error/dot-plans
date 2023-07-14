@@ -22,6 +22,9 @@ const contexts = {
   './templates/week-right.handlebars': {
     days: ["Thursday", "Friday", "Saturday", "Sunday"],
     times
+  },
+  './templates/month.handlebars': {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   }
 }
 

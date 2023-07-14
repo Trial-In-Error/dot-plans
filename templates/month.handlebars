@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <style>{{css}}</style>
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+      </script>
+  </head>
+  <body class="container">
+      <div class="main-section" style="height:85%;">
+        {{#each days}}
+        <div class="column">
+          <div class="day-header">
+            {{this}}
+          </div>
+          <div class="week-row"></div>
+          <div class="week-row"></div>
+          <div class="week-row"></div>
+          <div class="week-row"></div>
+          <div class="week-row"></div>
+          <div class="week-row"></div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="bottom-section">
+        <div class="column" style="width:50%; flex-direction: row;">
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">This month's focus</div>
+              <div class="to-do">
+                <div class="to-do-row">
+                  {{!-- <div class="day-focus-header">Personal</div> --}}
+                </div>
+              </div>
+              <div class="to-do">
+                <div class="to-do-row">
+                  {{!-- <div class="day-focus-header">Work</div> --}}
+                </div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">People to see</div>
+              <div class="to-do">
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Places to go</div>
+              <div class="to-do">
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+          <div class="cell-with-header to-do-table">
+            <div class="cell-header">Things to do</div>
+              <div class="to-do">
+                <div class="to-do-row"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
