@@ -28,8 +28,8 @@ const contexts = {
   }
 }
 
-fs.watch('./css', { persistent: true}, compileTemplates)
-fs.watch('./templates', { persistent: true}, compileTemplates)
+fs.watch('./css', { persistent: true }, compileTemplates)
+fs.watch('./templates', { persistent: true }, compileTemplates)
 
 function buildHTMLPath(templatePath) {
   const htmlPath = path.normalize('./html/' + path.basename(templatePath, path.extname(templatePath)) + '.html')

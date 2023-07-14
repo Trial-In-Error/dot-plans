@@ -2,13 +2,13 @@
   background-color: grey;
   text-align: center;
   border-width: 2px;
-  border-color: lightgrey;
+  border-color: black;
   border-style: solid;
 }
 
 .week-row {
   border-width: 2px;
-  border-color: lightgrey;
+  border-color: black;
   border-style: solid;
   flex-grow: 1;
 }
