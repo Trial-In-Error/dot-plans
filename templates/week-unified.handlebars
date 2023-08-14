@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <style>{{css}}</style>
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+      </script>
+  </head>
+  <body>
+    <div class="top-container main-section unified-container unified-column">
+      <div class="row unified-container growable-4" style="padding-bottom: 60px;">
+        <div class="growable cell-with-header unified-column">
+          <div class="cell-header">Week info</div>
+        </div>
+        <div class="growable cell-with-header unified-column">
+          <div class="cell-header">Notable occurances</div>
+        </div>
+      </div>
+      <div class="unified-column unified-container growable-16">
+        <div class="unified-row unified-container growable-2">
+          {{#each topDays}}
+            <div class="cell-with-header unified-column growable">
+              <div class="cell-header">{{this}}</div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="unified-row unified-container">
+          <div class="cell row growable day-focus-header">
+            Weekly goals
+          </div>
+        </div>
+        <div class="unified-row unified-container growable-2">
+          {{#each bottomDays}}
+            <div class="cell-with-header unified-column growable" style="flex-direction: column-reverse;">
+              <div class="cell-header">{{this}}</div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="bottom-section" style="padding-top: 60px; flex-grow: 6;">
+        <div class="cell-with-header to-do-table">
+          <div class="cell-header">Fresh tasks</div>
+          {{#repeat 8}}
+            <div class="to-do">
+              <div class="to-do-cell"></div>
+              <div class="to-do-row"></div>
+            </div>
+          {{/repeat}}
+        </div>
+        <div class="cell-with-header to-do-table">
+          <div class="cell-header">Stale tasks</div>
+          {{#repeat 8}}
+            <div class="to-do">
+              <div class="to-do-cell"></div>
+              <div class="to-do-row"></div>
+            </div>
+          {{/repeat}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

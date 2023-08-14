@@ -1,0 +1,39 @@
+.row {
+  flex-direction: row;
+}
+
+/* this is a terrible dupe of common.css's column, but without the width*/
+/* refactor later */
+.unified-column {
+  flex-direction: column;
+}
+
+.growable {
+  flex-grow: 1;
+  display: flex;
+}
+
+.growable-2 {
+  flex-grow: 2;
+}
+
+.growable-4 {
+  flex-grow: 4;
+}
+
+.growable-8 {
+  flex-grow: 8;
+}
+
+.growable-16 {
+  flex-grow: 16;
+}
+
+/* this is a terrible dupe of common.css's container, but without flex-direction column */
+/* refactor later */
+.unified-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-wrap: nowrap;
+}

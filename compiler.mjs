@@ -23,6 +23,10 @@ const contexts = {
     days: ["Thursday", "Friday", "Saturday", "Sunday"],
     times
   },
+  './templates/week-unified.handlebars': {
+    topDays: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+    bottomDays: ["Friday", "Saturday", "Sunday"]
+  },
   './templates/month.handlebars': {
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   }
