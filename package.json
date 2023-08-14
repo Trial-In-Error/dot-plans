@@ -13,6 +13,7 @@
     "handlebars": "^4.7.7",
     "handlebars-helper-repeat": "^2.0.0",
     "http-server": "^14.1.1",
-    "livereload": "^0.9.3"
+    "livereload": "^0.9.3",
+    "node-html-to-image": "^4.0.0"
   }
 }

@@ -4,6 +4,7 @@ import Handlebars from 'handlebars'
 import livereload from 'livereload'
 import handlebarsHelperRepeat from 'handlebars-helper-repeat'
 import { spawn } from 'child_process'
+import nodeHtmlToImage from 'node-html-to-image'
 
 const server = livereload.createServer()
 const lastTemplateValues = {}
@@ -61,9 +62,9 @@ function compileTemplates(eventType) {
 function compileTemplate(eventType, templatePath) {
   console.log('eventType', eventType, 'templatePath', templatePath)
   if (eventType === 'change' && path.extname(templatePath) === '.handlebars') {
-  let context = contexts[templatePath]
-  let commonCSSPath = path.normalize('./css/common.css')
-  let template = String(fs.readFileSync(templatePath))
+    let context = contexts[templatePath]
+    let commonCSSPath = path.normalize('./css/common.css')
+    let template = String(fs.readFileSync(templatePath))
     let css
     console.log('Updated %s', templatePath)
     try {
@@ -73,7 +74,12 @@ function compileTemplate(eventType, templatePath) {
     lastTemplateValues[templatePath] = template
     const compiled = Handlebars.compile(template)
     const string = compiled({ ...context, css })
+    const imagePath = path.normalize('./images/' + path.basename(templatePath, '.handlebars') + '.png')
     fs.writeFileSync(buildHTMLPath(templatePath), string)
+    nodeHtmlToImage({
+      output: imagePath,
+      html: string
+    }).then(() => console.log(`Saved ${imagePath}.`))
   }
 }
 
