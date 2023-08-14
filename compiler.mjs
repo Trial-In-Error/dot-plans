@@ -45,7 +45,7 @@ function buildCSSPath(templatePath) {
 function startHotReload() {
   let htmlPaths = fs.readdirSync('./html').map((path) => './html/' + path)
   server.watch(htmlPaths)
-  spawn('node', ['./node_modules/http-server/bin/http-server'])
+  spawn('node', ['./node_modules/http-server/bin/http-server', '-p 8082'])
 }
 
 function compileTemplates(eventType) {

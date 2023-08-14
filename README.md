@@ -1,0 +1,2 @@
+### To develop
+Start the web server with `npm start`. View the compiled HTML at `localhost:8082/html/FILENAME`. It should be accessible on the LAN as well (find your IP address with `hostname -I`). The server rebuilds all the compiled HTML on any change to the source handlebars templates or CSS files. If you add a new template, you will need to add to compiler.mjs's contexts object and restart the web server.
