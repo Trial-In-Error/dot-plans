@@ -7,7 +7,6 @@ import { spawn } from 'child_process'
 import nodeHtmlToImage from 'node-html-to-image'
 
 const server = livereload.createServer()
-const lastTemplateValues = {}
 // watch templates and CSS, only rebuild templates
 const paths = [...fs.readdirSync('./templates').map((path) => './templates/' + path)]
 
@@ -71,7 +70,6 @@ function compileTemplate(eventType, templatePath) {
       css = String(fs.readFileSync(buildCSSPath(templatePath)))
       css += String(fs.readFileSync(commonCSSPath))
     } catch (e) {}
-    lastTemplateValues[templatePath] = template
     const compiled = Handlebars.compile(template)
     const string = compiled({ ...context, css })
     const imagePath = path.normalize('./images/' + path.basename(templatePath, '.handlebars') + '.png')
