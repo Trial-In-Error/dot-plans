@@ -3,6 +3,7 @@ import * as path from 'node:path'
 import Handlebars from 'handlebars'
 import livereload from 'livereload'
 import handlebarsHelperRepeat from 'handlebars-helper-repeat'
+import listToPercentage from './helpers/listToPercentage.mjs'
 import { spawn } from 'child_process'
 import nodeHtmlToImage from 'node-html-to-image'
 
@@ -11,6 +12,7 @@ const server = livereload.createServer()
 const paths = [...fs.readdirSync('./templates').map((path) => './templates/' + path)]
 
 Handlebars.registerHelper('repeat', handlebarsHelperRepeat)
+Handlebars.registerHelper('listToPercentage', listToPercentage)
 
 const times = ["6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30"]
 
