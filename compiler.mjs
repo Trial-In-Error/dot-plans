@@ -48,8 +48,11 @@ function buildCSSPath(templatePath) {
 
 function startHotReload() {
   let htmlPaths = fs.readdirSync('./html').map((path) => './html/' + path)
+  // this is dumb, but templatePath has to be the path to a real file, even when kicking off the first build
+  compileTemplates("change", "./templates/month.handlebars" )
   server.watch(htmlPaths)
   spawn('node', ['./node_modules/http-server/bin/http-server', '-p 8082'])
+  console.log('Server with compiled HTML running at: http://localhost:8082/html/')
 }
 
 function compileTemplates(eventType) {
