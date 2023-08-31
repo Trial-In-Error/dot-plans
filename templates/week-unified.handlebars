@@ -16,9 +16,9 @@
         </div>
       </div>
       <div class="unified-column unified-container growable-16">
-        <div class="unified-row unified-container growable-2">
+        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat({{topDays.length}}, 1fr);">
           {{#each topDays}}
-            <div class="cell-with-header unified-column growable">
+            <div class="cell-with-header" style="display: inline-block;">
               <div class="cell-header">{{this}}</div>
             </div>
           {{/each}}
@@ -28,7 +28,7 @@
             Weekly goals
           </div>
         </div>
-        <div class="unified-row unified-container growable-2">
+        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat({{bottomDays.length}}, 1fr);">
           {{#each bottomDays}}
             <div class="cell-with-header unified-column growable" style="flex-direction: column-reverse;">
               <div class="cell-header">{{this}}</div>
