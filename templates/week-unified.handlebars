@@ -1,41 +1,91 @@
 <html>
   <head>
     <style>{{css}}</style>
+    <style>
+      @media print {
+        @page {
+          size: {{size.[0]}}in {{size.[1]}}in;
+        }
+
+        body {
+          font-size: .175in;
+          width: 100vw !important;
+          height: 100vh !important;
+          padding: {{margins.[1]}} {{margins.[0]}};
+          border: 1px grey dashed;
+          box-sizing: border-box;
+        }
+
+        .day-focus-header {
+          font-size: .115in;
+          padding: 4px;
+          color: #333333;
+        }
+
+        .cell-header {
+          padding: .02in 2px;
+          background-color: #aaaaaa;
+          color: #333333;
+        }
+
+        .cell-with-header {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .cell {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .bottom-padding {
+          padding-bottom: 0px;
+        }
+      }
+
+      body {
+        width: {{multiply size.[0] dpi}};
+        height: {{multiply size.[1] dpi}};
+      }
+    </style>
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
       </script>
   </head>
   <body>
     <div class="top-container main-section unified-container unified-column">
-      <div class="row unified-container growable-4" style="padding-bottom: 60px;">
-        <div class="growable cell-with-header unified-column">
+      <div class="row unified-container bottom-padding" style="height: 9%; width: 100%;">
+        <div class=" cell-with-header" style="width: 20%;">
           <div class="cell-header">Week info</div>
         </div>
-        <div class="growable cell-with-header unified-column">
+        <div class=" cell-with-header" style="width: 80%;">
           <div class="cell-header">Notable occurances</div>
         </div>
       </div>
-      <div class="unified-column unified-container growable-16">
-        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat({{topDays.length}}, 1fr);">
+      <!-- <div class="unified-column unified-container growable-16"> -->
+        <div class="unified-row" style="display: inline-grid; grid-template-columns: repeat({{topDays.length}}, 1fr); height: 39%;">
           {{#each topDays}}
             <div class="cell-with-header" style="display: inline-block;">
               <div class="cell-header">{{this}}</div>
             </div>
           {{/each}}
         </div>
-        <div class="unified-row unified-container">
-          <div class="cell row growable day-focus-header">
-            Weekly goals
-          </div>
+        <div class="unified-row" style="height: 13%; display: flex;">
+            <div class="cell row day-focus-header" style="width: 100%;">
+              Weekly goals
+            </div>
         </div>
-        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat({{bottomDays.length}}, 1fr);">
+        <div class="unified-row" style="display: inline-grid; grid-template-columns: repeat({{bottomDays.length}}, 1fr); height: 39%;">
           {{#each bottomDays}}
             <div class="cell-with-header unified-column growable" style="flex-direction: column-reverse;">
               <div class="cell-header">{{this}}</div>
             </div>
           {{/each}}
         </div>
-      </div>
+        <!-- </div> -->
+      {{#if tasks}}
       <div class="bottom-section" style="padding-top: 60px; flex-grow: 6;">
         <div class="cell-with-header to-do-table">
           <div class="cell-header">Fresh tasks</div>
@@ -56,6 +106,7 @@
           {{/repeat}}
         </div>
       </div>
+    {{/if}}
     </div>
   </body>
 </html>

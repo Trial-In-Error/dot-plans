@@ -40,14 +40,16 @@
   flex-wrap: nowrap;
 }
 body {
-  width: 1860;
-  height: 2480;
   margin: 0;
   font-size: 3rem;
 }
 
+.bottom-padding {
+  padding-bottom: 60px;
+}
+
 .top-container {
-  height: 2480;
+  height: 100%;
 }
 
 .date {
@@ -210,22 +212,71 @@ body {
   width: 40px;
 }
 </style>
+    <style>
+      @media print {
+        @page {
+          size: 7in 8in;
+        }
+
+        body {
+          font-size: .175in;
+          width: 100vw !important;
+          height: 100vh !important;
+          padding: 0in .33in;
+          border: 1px grey dashed;
+          box-sizing: border-box;
+        }
+
+        .day-focus-header {
+          font-size: .115in;
+          padding: 4px;
+          color: #333333;
+        }
+
+        .cell-header {
+          padding: .02in 2px;
+          background-color: #aaaaaa;
+          color: #333333;
+        }
+
+        .cell-with-header {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .cell {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .bottom-padding {
+          padding-bottom: 0px;
+        }
+      }
+
+      body {
+        width: 672;
+        height: 768;
+      }
+    </style>
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
       </script>
   </head>
   <body>
     <div class="top-container main-section unified-container unified-column">
-      <div class="row unified-container growable-4" style="padding-bottom: 60px;">
-        <div class="growable cell-with-header unified-column">
+      <div class="row unified-container bottom-padding" style="height: 9%; width: 100%;">
+        <div class=" cell-with-header" style="width: 20%;">
           <div class="cell-header">Week info</div>
         </div>
-        <div class="growable cell-with-header unified-column">
+        <div class=" cell-with-header" style="width: 80%;">
           <div class="cell-header">Notable occurances</div>
         </div>
       </div>
-      <div class="unified-column unified-container growable-16">
-        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat(4, 1fr);">
+      <!-- <div class="unified-column unified-container growable-16"> -->
+        <div class="unified-row" style="display: inline-grid; grid-template-columns: repeat(4, 1fr); height: 39%;">
             <div class="cell-with-header" style="display: inline-block;">
               <div class="cell-header">Monday</div>
             </div>
@@ -239,12 +290,12 @@ body {
               <div class="cell-header">Thursday</div>
             </div>
         </div>
-        <div class="unified-row unified-container">
-          <div class="cell row growable day-focus-header">
-            Weekly goals
-          </div>
+        <div class="unified-row" style="height: 13%; display: flex;">
+            <div class="cell row day-focus-header" style="width: 100%;">
+              Weekly goals
+            </div>
         </div>
-        <div class="unified-row growable-2" style="display: inline-grid; grid-template-columns: repeat(3, 1fr);">
+        <div class="unified-row" style="display: inline-grid; grid-template-columns: repeat(3, 1fr); height: 39%;">
             <div class="cell-with-header unified-column growable" style="flex-direction: column-reverse;">
               <div class="cell-header">Friday</div>
             </div>
@@ -255,79 +306,7 @@ body {
               <div class="cell-header">Sunday</div>
             </div>
         </div>
-      </div>
-      <div class="bottom-section" style="padding-top: 60px; flex-grow: 6;">
-        <div class="cell-with-header to-do-table">
-          <div class="cell-header">Fresh tasks</div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-        </div>
-        <div class="cell-with-header to-do-table">
-          <div class="cell-header">Stale tasks</div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-            <div class="to-do">
-              <div class="to-do-cell"></div>
-              <div class="to-do-row"></div>
-            </div>
-        </div>
-      </div>
+        <!-- </div> -->
     </div>
   </body>
 </html>

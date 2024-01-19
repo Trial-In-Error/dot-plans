@@ -1,12 +1,14 @@
 body {
-  width: 1860;
-  height: 2480;
   margin: 0;
   font-size: 3rem;
 }
 
+.bottom-padding {
+  padding-bottom: 60px;
+}
+
 .top-container {
-  height: 2480;
+  height: 100%;
 }
 
 .date {

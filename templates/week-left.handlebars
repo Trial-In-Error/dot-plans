@@ -1,6 +1,12 @@
 <html>
   <head>
     <style>{{css}}</style>
+    <style>
+      body {
+        width: {{multiply size.[0] dpi}};
+        height: {{multiply size.[1] dpi}};
+      }
+    </style>
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
       </script>
