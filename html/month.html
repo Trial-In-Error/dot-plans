@@ -188,6 +188,70 @@ body {
 }
 </style>
     <style>
+      @media print {
+        @page {
+          size: 7in 8in;
+        }
+
+        body {
+          font-size: .166in;
+          width: 100vw !important;
+          height: 100vh !important;
+          padding: 0in .33in;
+          border: 1px grey dashed;
+          box-sizing: border-box;
+        }
+
+        .day-focus-header {
+          font-size: .115in;
+          padding: 4px;
+          color: #333333;
+        }
+
+        .cell-header {
+          padding: .02in 2px;
+          background-color: #aaaaaa;
+          color: #333333;
+        }
+
+        .cell-with-header {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .cell {
+          margin: 2px;
+          border-width: 2px;
+          border-color: #aaaaaa;
+        }
+
+        .bottom-padding {
+          padding-bottom: 0px;
+        }
+
+        .day-header {
+          background-color: #aaaaaa;
+          border-color: #aaaaaa;
+        }
+
+        .week-row {
+          border-color: #aaaaaa;
+        }
+
+        .cell-with-header.to-do-table:first-of-type {
+          margin-left: 0px;
+        }
+
+        .cell-with-header.to-do-table:last-of-type {
+          margin-right: 0px;
+        }
+
+        .to-do-row {
+          border-color: #aaaaaa;
+        }
+      }
+
       body {
         width: 672;
         height: 768;

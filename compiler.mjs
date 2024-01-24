@@ -26,15 +26,15 @@ fs.watch('./config.json', { persistent: true }, compileTemplates)
 fs.watch('./css', { persistent: true }, compileTemplates)
 fs.watch('./templates', { persistent: true }, compileTemplates)
 
-function startHotReload() {
+async function startHotReload() {
   let htmlPaths = fs.readdirSync('./html').map((path) => './html/' + path)
-  compileTemplates("change")
+  compileTemplates("change").then(() => { generateSpread('./templates/week-unified.handlebars', './templates/month.handlebars', './templates/week-unified-and-month.handlebars') })
   server.watch(htmlPaths)
   spawn('node', ['./node_modules/http-server/bin/http-server', '-p 8082'])
   console.log('Server with compiled HTML running at: http://localhost:8082/html/')
 }
 
-function compileTemplates(eventType) {
+async function compileTemplates(eventType) {
   config = JSON.parse(fs.readFileSync('./config.json'))
   Object.keys(contexts).forEach((key) => {
     contexts[key] = config.templates[key]
@@ -43,9 +43,12 @@ function compileTemplates(eventType) {
     contexts[key].margins = config.margins
   })
 
+  const promises = []
   for(let i = 0; i < paths.length; i++) {
-    compileTemplate(eventType, paths[i])
+    promises.push(compileTemplate(eventType, paths[i]))
   }
+
+  return Promise.all(promises)
 }
 
 function compileTemplate(eventType, templatePath) {
@@ -63,7 +66,7 @@ function compileTemplate(eventType, templatePath) {
     const compiled = Handlebars.compile(template)
     const string = compiled({ ...context, css })
     const imagePath = buildImagePath(templatePath)
-    fsp.writeFile(buildHTMLPath(templatePath), string)
+    return fsp.writeFile(buildHTMLPath(templatePath), string)
       .then(() => nodeHtmlToImage({
         output: imagePath,
         html: string,
@@ -76,18 +79,27 @@ function compileTemplate(eventType, templatePath) {
           }
         }
       }))
-      .then(() => {
-        const doc = new PDFDocument()
-        doc.pipe(fs.createWriteStream(buildPDFPath(templatePath)))
-        // the DPI has to be 96 when setting the puppeteer width/height args
-        // but it has to be 69 when rendering to PDF...??
-        doc.image(imagePath, { fit: [69 * config.size[0], 69 * config.size[1]] })
-        doc.addPage()
-        doc.image(imagePath, { fit: [69 * config.size[0], 69 * config.size[1]] })
-        doc.end()
-      })
+      .then(() => generateSpread(templatePath, templatePath, templatePath))
       .then(() => console.log(`Saved ${imagePath}.`))
   }
+}
+
+function generateSpread(frontTemplatePath, backTemplatePath, outputPath) {
+  const doc = new PDFDocument({ size: 'LETTER', margin: 0 })
+  doc.pipe(fs.createWriteStream(buildPDFPath(outputPath)))
+  // the DPI has to be 96 when setting the puppeteer width/height args
+  // but, because PDFs use a coordinate system of 72 points per inch,
+  // we have to use 72 PPI here.
+  doc.image(buildImagePath(frontTemplatePath), {
+    fit: [8.5 * 72, config.size[1] * 72],
+    align: 'center'
+  }, (8.5 * 72 - config.size[0] * 72))
+  doc.addPage()
+  doc.image(buildImagePath(backTemplatePath), {
+    fit: [8.5 * 72, config.size[1] * 72],
+    align: 'center'
+  }, (8.5 * 72 - config.size[0] * 72))
+  doc.end()
 }
 
 startHotReload()
